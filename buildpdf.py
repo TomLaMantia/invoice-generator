@@ -31,8 +31,8 @@ document_data = yaml.load(yml_file)
 
 pos_number = 1
 document_data['totals'] = {
-    'netto' : 0,
-    'brutto': 0,
+    'net': 0,
+    'gross': 0,
     'tax': 0        
 }
 for pos in document_data['positions']:
@@ -40,27 +40,27 @@ for pos in document_data['positions']:
         pos['tax_rate'] = document_data['tax_rate']
 
     pos['pos_number'] = pos_number
-    pos['total_netto_price'] = pos['netto_price'] * pos['amount']
-    pos['total_tax'] = pos['total_netto_price'] * (pos['tax_rate'] / float(100))
-    pos['total_brutto_price'] = pos['total_netto_price'] + pos['total_tax']
+    pos['total_net_price'] = pos['net_price'] * pos['amount']
+    pos['total_tax'] = pos['total_net_price'] * (pos['tax_rate'] / float(100))
+    pos['total_gross_price'] = pos['total_net_price'] + pos['total_tax']
 
-    document_data['totals']['netto'] += pos['total_netto_price']
-    document_data['totals']['brutto'] += pos['total_brutto_price']
+    document_data['totals']['net'] += pos['total_net_price']
+    document_data['totals']['gross'] += pos['total_gross_price']
     document_data['totals']['tax'] += pos['total_tax']
 
     pos['amount'] = locale.format_string("%.2f", pos['amount'])
     pos['tax_rate'] = locale.format_string("%.2f", pos['tax_rate'])
-    pos['netto_price'] = locale.format_string("%.2f", pos['netto_price'])
-    pos['total_netto_price'] = \
-        locale.format_string("%.2f", pos['total_netto_price'])
+    pos['net_price'] = locale.format_string("%.2f", pos['net_price'])
+    pos['total_net_price'] = \
+        locale.format_string("%.2f", pos['total_net_price'])
     pos['text'] = pos['text'].replace('\n', '<br>')
 
     pos_number += 1
 
-document_data['totals']['netto'] = \
-    locale.format_string("%.2f", document_data['totals']['netto'])
-document_data['totals']['brutto'] = \
-    locale.format_string("%.2f", document_data['totals']['brutto'])
+document_data['totals']['net'] = \
+    locale.format_string("%.2f", document_data['totals']['net'])
+document_data['totals']['gross'] = \
+    locale.format_string("%.2f", document_data['totals']['gross'])
 document_data['totals']['tax'] = \
     locale.format_string("%.2f", document_data['totals']['tax'])
 

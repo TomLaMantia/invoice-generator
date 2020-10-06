@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  invoice-generator:
+    build: .
+    command: python buildpdf.py --output_pdf /app/test.pdf
+    volumes:
+      - .:/app
+

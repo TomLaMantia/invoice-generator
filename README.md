@@ -68,7 +68,7 @@ positions:
     - ...
 ```
     
-## Credits
+## Credits For Templates
 - Template 1: `https://github.com/jonathantneal/html5-invoice`
 - Template 2: `https://github.com/sendwithus/templates/`
 - Template 3: `https://github.com/rimiti/html-invoice-template`

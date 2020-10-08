@@ -1,12 +1,7 @@
-ecm.online invoice-generator
-======
+## This is a fork of https://github.com/ecmonline/invoice-generator
 
 Generate invoices using python, weasyprint and yaml.
 Just add your data to `documents/invoice/data.yml` and run the `./buildpdf.py` script.
-
-Current template looks like this:
-
-![rendered invoice](https://raw.githubusercontent.com/ecmonline/invoice-generator/master/pdf.png)
 
 Usage see `./buildpdf.py --help`:
 
@@ -24,3 +19,10 @@ Usage see `./buildpdf.py --help`:
     --output_pdf OUTPUT_PDF
                             The output pdf file
     --locale LOCALE       The locale to use
+    
+    
+## Credits
+- Template 1: `https://github.com/jonathantneal/html5-invoice`
+- Template 2: `https://github.com/sendwithus/templates/`
+- Template 3: `https://github.com/rimiti/html-invoice-template`
+- Template 4: `https://github.com/Inambe/html-invoice-template`

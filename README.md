@@ -1,25 +1,72 @@
 ## This is a fork of https://github.com/ecmonline/invoice-generator
 
-Generate invoices using python, weasyprint and yaml.
-Just add your data to `documents/invoice/data.yml` and run the `./buildpdf.py` script.
+## Overview
+Generate invoices using Python, Weasyprint and YAML. We populate HTML invoice
+templates with data from a YAML file.
 
-Usage see `./buildpdf.py --help`:
+## Usage 
+See `./buildpdf.py --help`:
 
+## HTML Template Format
+The HTML templates and their corresponding stylesheet(s) define how the invoice
+document looks and feels. The program supports the following data bindings in
+the HTML template:
 
-    usage: buildpdf.py [-h] [--template TEMPLATE] [--yaml_file YAML_FILE]
-                    [--output_pdf OUTPUT_PDF] [--locale LOCALE]
+Standalone:
+- `{{from.name}}`
+- `{{from.street}}`
+- `{{from.postcode}}`
+- `{{from.city}} `
+- `{{to.name}}`
+- `{{to.street}}`
+- `{{to.postcode}} `
+- `{{to.city}}`
+- `{{@root.currency}} `
+- `{{tax_rate}}`
+- `{{total_net_price}}`
+- `{{totals.net}}`
+- `{{totals.tax}}`
+- `{{totals.gross}}`
 
-    Convert HTML template to pdf with data from yaml
+Contained within `{{#positions}} {{/positions}}`  iterator:
+- `{{pos_number}} `
+- `{{{text}}}` 
+- `{{amount}}`
+- `{{net_price}} `
+   
+## YML Format
+We populate our HTML files with YML files. The format of the YML files is as 
+follows:
+```
+from:
+    name: str
+    street: str
+    postcode: str
+    city: str
 
-    optional arguments:
-    -h, --help            show this help message and exit
-    --template TEMPLATE   The name of the template to use (e.g. invoice)
-    --yaml_file YAML_FILE
-                            The yaml file to use for data
-    --output_pdf OUTPUT_PDF
-                            The output pdf file
-    --locale LOCALE       The locale to use
+to:
+    name: str
+    street: str
+    postcode: str
+    city: str
+
+customer_number: str
+currency: float
+tax_rate: float
+invoice:
+    number: str
+    date: mm.dd.yyy
+    pay_until_date: mm.dd.yyy
+
+positions:
+    - net_price: float
+      amount: int
+      text: str
+     
+    - ...
     
+    - ...
+```
     
 ## Credits
 - Template 1: `https://github.com/jonathantneal/html5-invoice`
